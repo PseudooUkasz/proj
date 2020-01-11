@@ -64,9 +64,9 @@ class PostController extends AbstractController{
      * @Route("/show/{id}", name="show")
      * @return Response
      */
-    public function show($id, PostRepository $postRepository)  {
-        $post=$postRepository->findPostWithCategory($id);
-        dump($post);
+    public function show(Post $post /*$id, PostRepository $postRepository*/)  {
+       // $post=$postRepository->findPostWithCategory($id);
+        //dump($post);
         //$post=$postRepository->find($id);
        // dump($post); die;
         return $this->render('post/show.html.twig',[
