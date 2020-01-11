@@ -27,7 +27,7 @@ class Post
      * @ORM\Column(type="string", length=100)
      */
     private $image;
-
+    
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="post")
      */
