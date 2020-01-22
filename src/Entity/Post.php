@@ -4,7 +4,8 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
+//bin/console doctrine:schema:update --dump-sql
+//bin/console doctrine:schema:update --force
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
  */
@@ -32,6 +33,21 @@ class Post
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="post")
      */
     private $category;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $ilosc;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $cena;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $opis;
 
     public function getId(): ?int
     {
@@ -70,6 +86,42 @@ class Post
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getIlosc(): ?int
+    {
+        return $this->ilosc;
+    }
+
+    public function setIlosc(int $ilosc): self
+    {
+        $this->ilosc = $ilosc;
+
+        return $this;
+    }
+
+    public function getCena(): ?int
+    {
+        return $this->cena;
+    }
+
+    public function setCena(int $cena): self
+    {
+        $this->cena = $cena;
+
+        return $this;
+    }
+
+    public function getOpis(): ?string
+    {
+        return $this->opis;
+    }
+
+    public function setOpis(string $opis): self
+    {
+        $this->opis = $opis;
 
         return $this;
     }

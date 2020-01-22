@@ -12,29 +12,72 @@
 <table class="table table-striped">
     <thead>
         <tr>
+         {% if is_granted('ROLE_ADMIN')%}
             <td>ID</td>
-            <td>Title</td>
+            {% endif %}
+            <td>Nazwa</td>
+            <td>Ilość(kg)</td>
+            
+            {% if is_granted('ROLE_ADMIN')%}
             <td>Actions</td>
+            {% endif %}
+            <td>Cena/kg</td>
+            <td>Zamówienie</td>
         </tr>
     </thead>
     <tbody>
         {% for post in posts %}
         <tr>
-            <td>{{post.id}}</td>
+             {% if is_granted('ROLE_ADMIN')%}
+            <td>{{post.id}}</td> 
+            {% endif %}
             <td>
+         
             <a href="{{path('post.show',{id: post.id}) }}">
            {# <a href="{{path('post',{id: post.id}) }}"> #}
-            {{post.titile}}
+           {# {{post.titile}} #}
             </a>
+            <p>
+             {#   <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    Link with href
+                </a> #}
+              {#  <div{{ attributes.setAttribute('id', 'myID') }}></div> #}
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target=id: post.id aria-expanded="false" aria-controls="collapseExample">
+                    {{post.titile}}
+                </button>
+            </p>
+            <div class="collapse multi-collapse" id=post.id>
+                <div class="card card-body">
+                     {{post.opis}}
+                </div>
+            </div> 
+
             </td>
+            <td>
+            {{post.ilosc}}
+            </td>
+            <td>
+            {{post.cena}}
+            </td>
+            <td>
+            <input class="form-control" type="int" placeholder="Default input" value="value">
+            </td>
+            {% if is_granted('ROLE_ADMIN')%}
             <td>
             <a class="text-danger" href="{{path('post.delete',{id: post.id}) }}">
            
             Delete
             </a>
             </td>
+            {% endif %}
         </tr>
         {% endfor %}
+        
     </tbody>
+</table>
+<button type="submit" href="{{path('post.order') }}" name="order" class="btn btn-primary btn-lg btn-block">Przejdź do zamówienia</button>
+{% endblock %}
+{% block przycisk %}
+
 
 {% endblock %}

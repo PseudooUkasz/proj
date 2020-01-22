@@ -14,8 +14,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 //bin/console doctrine:schema:update --dump-sql
 //bin/console doctrine:schema:update --force
-
-
+//https://www.youtube.com/watch?v=l5QLodEL1jo&list=PLqhuffi3fiMONS5B7zzD2nqGxf_TmpQB1
+//https://www.youtube.com/watch?v=MRfsHix1eRA
 class PostType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -28,6 +28,9 @@ class PostType extends AbstractType
             ->add('category', EntityType::class,[
                 'class'=> Category::class
             ])
+            ->add('ilosc')
+            ->add('cena')
+            ->add('opis')
             ->add('save', SubmitType::class,[
                 'attr'=>[
                     'class'=> 'btn btn-primary float-right'
