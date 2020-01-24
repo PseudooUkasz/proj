@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categoryy{% endblock %}
+
+{% block body %}
+   
+    <img src="{{'/uploads/' ~ categoryy.baner }}" class="img-fluid" alt="Responsive image">
+    <h1>{{categoryy.name}}</h1>
+    <h1> </h1>
+    <blockquote class="blockquote text-center">
+        <p class="mb-0">{{categoryy.text}}</p>
+      <!--  <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer> -->
+    </blockquote>
+
+{#
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ categoryy.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ categoryy.name }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ categoryy.slug }}</td>
+            </tr>
+        </tbody>
+    </table> #}
+    <a role="button" href="{{ path('main') }}" class="btn btn-primary btn-lg btn-block">Back to blog</a>
+     {% if is_granted('ROLE_ADMIN') %} 
+    <a role="button" href="{{ path('categoryy_edit', {'id': categoryy.id}) }}" class="btn btn-primary btn-lg btn-block">Edit</a>
+
+
+    {{ include('categoryy/_delete_form.html.twig') }}
+   {# <form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div> 
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form> #}
+    {{form(form)}}
+
+    {% endif %}
+{% endblock %}

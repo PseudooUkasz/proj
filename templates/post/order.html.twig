@@ -3,11 +3,7 @@
 
 
 {% block body %}
-{% for message in app.flashes('success') %}
-    <div class="alert alert-success">
-        {{ message }}
-    </div> 
-{% endfor %}
+
 <h2>Lista </h2>
 <table class="table table-striped">
     <thead>
@@ -75,7 +71,7 @@
         
     </tbody>
 </table>
-{#<button type="submit" href="{{path('post.order') }}" name="order" class="btn btn-primary btn-lg btn-block">Przejdź do zamówienia</button> #}
+<button type="submit" href="{{path('post.order') }}" name="order" class="btn btn-primary btn-lg btn-block">Przejdź do zamówienia</button>
 {% endblock %}
 {% block przycisk %}
 

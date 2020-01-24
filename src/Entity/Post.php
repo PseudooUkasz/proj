@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Post
 {
+    
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

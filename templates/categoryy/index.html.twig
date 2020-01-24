@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categoryy index{% endblock %}
+
+{% block body %}
+    <h1>Categoryy index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Slug</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categoryy in categoryys %}
+            <tr>
+                <td>{{ categoryy.id }}</td>
+                <td>{{ categoryy.name }}</td>
+                <td>{{ categoryy.slug }}</td>
+                <td>
+                    <a href="{{ path('categoryy_show', {'id': categoryy.id}) }}">show</a>
+                    <a href="{{ path('categoryy_edit', {'id': categoryy.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('categoryy_new') }}">Create new</a>
+{% endblock %}

@@ -1,8 +1,23 @@
 {% extends "base.html.twig" %}
 {% block body %} 
-<h1>Najlepszy sklep ze świerzymi owocami i warzywami! </h1>
-<h1>Sprawdź naszą ofertę lub zarejestruj się odrazu </h1>
-<a class="nav-link" href="{{path('register')}}">Register</a>
-<a class="nav-link" href="{{path('post.index')}}">Sklep</a>
+    {% for categoryy in categoryys %}
+        <div class="row no-gutters bg-light position-relative">
+            <div class="col-md-6 mb-md-0 p-md-4">
+                <img src="{{'/uploads/' ~ categoryy.image}}" class="w-100" alt="...">
+            </div>
+            <div class="col-md-6 position-static p-4 pl-md-0">
+                <h5 class="mt-0">{{ categoryy.name }}</h5>
+                <p>{{ categoryy.slug }}</p>
+                <a class="btn btn-primary" href="{{ path('categoryy_show', {'id': categoryy.id}) }}" role="button">View</a>
+                {#<a href="{{ path('categoryy_show', {'id': categoryy.id}) }}" class="stretched-link">View</a> #}
+                {% if is_granted('ROLE_ADMIN') %}
+                <a class="btn btn-primary" href="{{ path('categoryy_edit', {'id': categoryy.id}) }}" role="button">Edit</a>
+               {# <a href="{{ path('categoryy_show', {'id': categoryy.id}) }}">show</a> #}
+                {% endif %}
+            </div>
+        </div>
+{% endfor %}
+
+{#<a class="nav-link" href="{{path('post.index')}}">Sklep</a> #}
 
 {% endblock %}

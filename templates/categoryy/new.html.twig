@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Categoryy{% endblock %}
+
+{% block body %}
+    <h1>Create new Categoryy</h1>
+
+    {{ include('categoryy/_form.html.twig') }}
+
+    <a href="{{ path('categoryy_index') }}">back to list</a>
+{% endblock %}

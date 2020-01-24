@@ -1,6 +1,8 @@
 <?php
 namespace App\Controller;
-
+use App\Entity\Categoryy;
+use App\Form\CategoryyType;
+use App\Repository\CategoryyRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,15 +20,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     /**
-     * @Route("/", name="main")
+     * @Route("/", name="main" )
      */
 
-    public function index()
+    public function index(CategoryyRepository $categoryyRepository): Response
     {
        
 
         // the template path is the relative file path from `templates/`
-        return $this->render('index.html.twig');
+        return $this->render('index.html.twig',[
+        'categoryys' => $categoryyRepository->findAll(),
+        ]);
     }
     /**
      * @Route("/custom/{name?}", name="custom")
