@@ -20,16 +20,17 @@ class CommentsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('text', /*['query_builder'=>function(Categoryy $id){
+            ->add('text', null, array('label'=> 'Dodaj nowy Komentarz')
+             /*['query_builder'=>function(Categoryy $id){
               return $id->createQuerryBuilder('categoryy_id')
                 
-            }] */)
-            ->add('categoryy_id', EntityType::class,[
+            }] */) /*
+            ->add('categoryy', EntityType::class,[
               'class'=> Categoryy::class
           ])
           ->add('user_id', EntityType::class,[
             'class'=> User::class
-        ])
+        ]) */
 
            // -add()
            // ->add('categoryy_id',//'null',[

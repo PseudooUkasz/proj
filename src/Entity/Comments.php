@@ -35,6 +35,21 @@ class Comments
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     public $user;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $userid;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $categoryyid;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $username;
   
     public function getId(): ?int
     {
@@ -76,4 +91,41 @@ class Comments
 
         return $this;
     }
+
+    public function getUserid(): ?int
+    {
+        return $this->userid;
+    }
+
+    public function setUserid(int $userid): self
+    {
+        $this->userid = $userid;
+
+        return $this;
+    }
+
+    public function getCategoryyid(): ?int
+    {
+        return $this->categoryyid;
+    }
+
+    public function setCategoryyid(int $categoryyid): self
+    {
+        $this->categoryyid = $categoryyid;
+
+        return $this;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+    
 }

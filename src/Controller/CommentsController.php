@@ -21,4 +21,12 @@ class CommentsController extends AbstractController
             'controller_name' => 'CommentsController',
         ]);
     }
-}
+    /*
+    public function remove(Comments $comments) {
+        $em= $this->getDoctrine()->getManager();
+        $em->remove($comments);
+        $em->flush();
+        $this->addFlash('success', 'Post was removed');
+        return $this->redirect($this->generateUrl('post.index'));
+    } */
+} 

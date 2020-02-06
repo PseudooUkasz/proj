@@ -9,17 +9,43 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Doctrine\ORM\Mapping\MappedSuperclass;
+use Symfony\Component\Validator\Constraints\File;
 
 class CategoryyType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('slug')
-            ->add('text')
-            ->add('attachment', FileType::class,['mapped'=>false])
-            ->add('baner', FileType::class,['mapped'=>false])
+            ->add('name', null, array('label'=> 'Tytuł artykułu:'))
+            ->add('slug' ,null, array('label'=> 'Krótki opis:'))
+            ->add('text' , null, array('label'=> 'Treść artykułu:'))
+            ->add('attachment',  FileType::class, ['mapped'=>false, 'label'=> 'Obraz główny:',
+            'constraints' => [
+                new File([
+                    'maxSize' => '5024k',
+                    'mimeTypes' => [
+                        'image/*',
+
+                    ],
+                    'mimeTypesMessage' => 'tylko obrazy ',
+                ])
+            ],
+            
+            
+            
+            ] )
+            ->add('baner',  FileType::class,['mapped'=>false, 'label'=> 'Banner artykułu:',
+            'constraints' => [
+                new File([
+                    'maxSize' => '5024k',
+                    'mimeTypes' => [
+                        'image/*',
+
+                    ],
+                    'mimeTypesMessage' => 'tylko obrazy ',
+                ])
+            ],
+            ])
         ;
     }
 

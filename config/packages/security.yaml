@@ -1,4 +1,5 @@
 security:
+    access_denied_url: /
     encoders:
         App\Entity\User:
             algorithm: auto
@@ -30,7 +31,11 @@ security:
                 path: app_logout
                 # where to redirect after logout
                 # target: app_any_route
-
+            form_login:
+                always_use_default_target_path: true
+                default_target_path:            main
+              #  target_path_parameter:          _target_path
+                use_referer:                    false
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
 
@@ -42,6 +47,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
        #  - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
-       #  - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/post, roles: ROLE_SUPER_ADMIN }
 
-        # - { path: ^/, roles: ROLE_ADMIN }
+         - { path: ^/categoryy/new, roles: ROLE_ADMIN }
+         - { path: ^/categoryy/edit/, roles: ROLE_ADMIN }

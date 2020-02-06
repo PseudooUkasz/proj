@@ -1,22 +1,32 @@
 <?php
 namespace App\Controller;
 use App\Entity\Post;
+use App\Entity\Categoryy;
 use App\Form\PostType;
+use App\Form\CategoryyType;
 use App\Repository\PostRepository;
+use App\Repository\CategoryyRespository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
+use Symfony\Component\Security\Core\Security;
 /**
  * @Route("/post",name="post.")
  */
 class PostController extends AbstractController{
     /**
-     * @Route("/", name="index")
+     * @Route("/", name="index", methods={"GET", "POST"})
      */
     public function index(PostRepository $postRepository) {
         $posts=$postRepository->findAll();
+       // $cat=$categoryyRepository->findAll();
         //dump($posts);
+        // the template path is the relative file path from `templates/`
+      //  return $this->render('index.html.twig',[
+      //      'categoryys' => $categoryyRepository->findAll(),
+       //     ]);
         return $this->render('post/index.html.twig', [
             'controller_name' => 'PostController',
             'posts'=>$posts,

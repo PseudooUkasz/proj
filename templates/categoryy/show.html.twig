@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Categoryy{% endblock %}
+{% block title %}{{categoryy.name}}{% endblock %}
 
 {% block body %}
-   
-    <img src="{{'/uploads/' ~ categoryy.baner }}" class="img-fluid" alt="Responsive image">
-    <h1>{{categoryy.name}}</h1>
+    
+   <span class="badge badge-pill badge-light " style="margin-top: 20px; margin-bottom: 20px;"><h1>{{categoryy.name}}</h1></span>
     <h1> </h1>
-    <blockquote class="blockquote text-center">
+    <img src="{{'/uploads/' ~ categoryy.baner }}" class="img-fluid" style=" margin-bottom: 20px;" alt="Responsive image">
+    
+    <blockquote class="blockquote text-center" style="margin-top: 20px; margin-bottom: 20px;">
         <p class="mb-0">{{categoryy.text}}</p>
       <!--  <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer> -->
     </blockquote>
@@ -29,12 +30,47 @@
             </tr>
         </tbody>
     </table> #}
-    <a role="button" href="{{ path('main') }}" class="btn btn-primary btn-lg btn-block">Back to blog</a>
+    <a style="margin-top: 20px; margin-bottom: 20px;" role="button" href="{{ path('main') }}" class="btn btn-primary btn-lg btn-block">Back to blog</a>
      {% if is_granted('ROLE_ADMIN') %} 
-    <a role="button" href="{{ path('categoryy_edit', {'id': categoryy.id}) }}" class="btn btn-primary btn-lg btn-block">Edit</a>
-
+    <a style="margin-top: 20px; margin-bottom: 20px;" role="button" href="{{ path('categoryy_edit', {'id': categoryy.id}) }}" class="btn btn-primary btn-lg btn-block">Edit</a>
+       
 
     {{ include('categoryy/_delete_form.html.twig') }}
+     {% endif %}
+    {# user == comments.userid and #}
+    {% for comments in comments %}
+    {% if  categoryy.id ==  comments.categoryyid  %}
+         {#   <tr>
+                <td>{{ comments.id }}</td>
+                <td>{{ comments.text }}</td>
+                <td>
+                    <a href="{{ path('categoryy_show', {'id': categoryy.id}) }}">show</a>
+                    <a href="{{ path('categoryy_edit', {'id': categoryy.id}) }}">edit</a>
+                </td>  
+            </tr>  #}
+            <div class="card bg-light mb-3" style="margin-top: 20px;max-width: 150rem;">
+                <div class="card-header">{{comments.username}}
+                {% if is_granted('ROLE_ADMIN') or comments.userid == user  %}
+                   
+                <a class="btn btn-outline-warning" href="{{path('comments.delete',{id: comments.id}) }}">
+
+            Delete
+            </a>
+             {% if comments.userid == user %}
+                {% endif %}
+            {% endif %}
+                </div>
+                 <div class="card-body">
+                   {# <h5 class="card-title">Light card title</h5> #}
+                    <p class="card-text"> {{comments.text}}</p>
+                </div>
+            </div>
+       {#     {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr> #}
+            {% endif %} 
+        {% endfor %}  
    {# <form>
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
@@ -52,7 +88,15 @@
   </div> 
   <button type="submit" class="btn btn-primary">Submit</button>
 </form> #}
-    {{form(form)}}
+   {# {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_widget(form.label, {'attr': {'class': 'task_field'}}) }}
+            <button class="btn">{{ button_label|default('Save') }}</button> 
+    {{ form_end(form) }} #}
+    {{form(form)}} 
 
-    {% endif %}
+
 {% endblock %}
+{% block stylesheets %}
+        
+    {% endblock %}
